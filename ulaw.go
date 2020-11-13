@@ -29,6 +29,9 @@ func MLawEncodeSample(s int16) uint8 {
 	if s >= 0 {
 		return μLawCompressTable[s>>4]
 	}
+	if s == -32768 {
+	   return 0x7f & μLawCompressTable[2048]
+	}
 	return 0x7f & μLawCompressTable[-s>>4]
 }
 
